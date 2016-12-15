@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.lang.Integer?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="819.0" style=" -fx-background-color:#ffffff&#9;;&#10;-fx-border-width:5 5 5 0;&#10;-fx-border-color:black;&#10;" xmlns:fx="http://javafx.com/fxml" fx:controller="testapp.FXMLDocumentController">
+  <children>
+    <VBox prefHeight="424.0" prefWidth="402.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <VBox prefHeight="81.0" prefWidth="459.0">
+          <children>
+            <GridPane prefHeight="42.0" prefWidth="459.0" style=" -fx-background-color:#000000&#9;;">
+              <children>
+                <Label fx:id="clockLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="153.0" text="4:23 PM" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <font>
+                    <Font name="System Bold" size="12.0" fx:id="x1" />
+                  </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" depthTest="ENABLE" font="$x1" prefHeight="22.0" prefWidth="153.0" text="September 23,2013" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane fx:id="mainHeader" prefHeight="67.0" prefWidth="459.0" style=" -fx-background-color:#C0C0C0;&#10;">
+              <children>
+                <Label alignment="CENTER" prefHeight="19.0" prefWidth="139.0" text="HOME" textAlignment="CENTER" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <font>
+                    <Font name="System Bold" size="16.0" />
+                  </font>
+                </Label>
+                <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                  <children>
+                    <Button layoutX="14.0" layoutY="-13.0" mnemonicParsing="false" prefHeight="37.9609375" styleClass="btn" text="BACK">
+                      <stylesheets>
+                        <URL value="@resources/button.css" />
+                      </stylesheets>
+                    </Button>
+                  </children>
+                </Pane>
+                <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <right>
+                    <AnchorPane fx:id="" prefHeight="200.0" prefWidth="200.0">
+                      <children>
+                        <ImageView fitHeight="16.578125953674316" fitWidth="22.104167938232422" layoutX="10.0" layoutY="13.0" preserveRatio="true" />
+                        <Slider layoutX="32.0" layoutY="17.0" prefWidth="99.0" />
+                      </children>
+                    </AnchorPane>
+                  </right>
+                </BorderPane>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          </children>
+        </VBox>
+        <TabPane side="BOTTOM" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+          <stylesheets>
+            <URL value="@resources/tabstyle.css" />
+          </stylesheets>
+          <tabs>
+            <Tab text="HOME">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style=" -fx-background-color:#9f7fff&#9;;">
+                  <children>
+                    <Button font="$x1" layoutX="34.0" layoutY="195.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" styleClass="btn, bluebtn" text="QC">
+                      <stylesheets>
+                        <URL value="@resources/button.css" />
+                      </stylesheets>
+                    </Button>
+                    <Button font="$x1" layoutX="34.0" layoutY="238.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" styleClass="btn, bluebtn" text="APPLY">
+                      <stylesheets>
+                        <URL value="@resources/button.css" />
+                      </stylesheets>
+                    </Button>
+                    <Button font="$x1" layoutX="34.0" layoutY="292.0" mnemonicParsing="false" onAction="#handleSaveBtnAction" prefWidth="89.0" styleClass="btn, bluebtn" text="SAVE">
+                      <stylesheets>
+                        <URL value="@resources/button.css" />
+                      </stylesheets>
+                    </Button>
+                    <GridPane layoutX="186.0" layoutY="268.0" prefHeight="120.0">
+                      <children>
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" font="$x1" prefWidth="89.0" text="Temparature" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" font="$x1" prefWidth="89.0" text="Salinity" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" font="$x1" prefWidth="89.0" text="PH" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" font="$x1" prefWidth="89.0" text="Nitrate" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <!--                        <TextField prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />-->
+                        <!--                        <TextField prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />-->
+                        <!--                        <TextField prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />-->
+                        <Spinner fx:id="tempSpinner" disable="true" max="100" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Spinner fx:id="salinitySpinner" disable="true" max="380" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Spinner fx:id="phSpinner" disable="true" max="140" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Spinner fx:id="nitrateSpinner" disable="true" max="180" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                    <Button font="$x1" layoutX="34.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleEditBtnAction" onKeyPressed="#handleEditBtnAction" prefWidth="89.0" styleClass="btn, bluebtn" text="Edit">
+                      <stylesheets>
+                        <URL value="@resources/button.css" />
+                      </stylesheets>
+                    </Button>
+                    <GridPane layoutX="175.0" layoutY="74.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="485.0" style="-fx-grid-lines-visible:true;">
+                      <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                          <center>
+                            <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" prefWidth="89.0" text="Temparature" textFill="WHITE" />
+                          </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                          <center>
+                            <Label fx:id="currentTempLbl" text="73" textAlignment="CENTER" textFill="WHITE">
+                              <font>
+                                <Font name="System Bold" size="50.0" fx:id="x3" />
+                              </font>
+                            </Label>
+                          </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                          <center>
+                            <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" prefWidth="89.0" text="Salinity" textFill="WHITE" />
+                          </center>
+                        </BorderPane>
+                        <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <center>
+                            <Label fx:id="currentSalinityLbl" font="$x3" text="73" textAlignment="CENTER" textFill="WHITE" />
+                          </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="41.0" prefWidth="139.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                          <center>
+                            <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" prefWidth="89.0" text="PH" textFill="WHITE" />
+                          </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="79.0" prefWidth="106.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                          <center>
+                            <Label fx:id="currentPhLbl" font="$x3" text="73" textAlignment="CENTER" textFill="WHITE" />
+                          </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                          <center>
+                            <Label font="$x1" text="Nitrate" textFill="WHITE" />
+                          </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                          <center>
+                            <Label fx:id="currentNitrateLbl" font="$x3" text="73" textFill="WHITE" />
+                          </center>
+                        </BorderPane>
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="112.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="117.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" prefWidth="125.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" prefWidth="106.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+                        <!--                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+                      </rowConstraints>
+                    </GridPane>
+                    <Label alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="246.0" layoutY="28.0" prefHeight="30.0" prefWidth="188.0" text="CURRENT READING" textFill="WHITE">
+                      <font>
+                        <Font name="System Bold" size="18.0" />
+                      </font>
+                    </Label>
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Temperature">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style=" -fx-background-color:#9f7fff;">
+                  <children>
+                    <GridPane maxWidth="1.7976931348623157E308" style="-fx-border-color:red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <StackedAreaChart fx:id="tmpChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" maxWidth="1.7976931348623157E308" style="-fx-background-color:#ffffff&#9;;&#10;-fx-border-width:5 0 5 5;&#10; -fx-border-color:black;&#10;CHART_COLOR_1:red;&#10;CHART_COLOR_1_TRANS_20:#d8d8d8;" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                          <!--                          <stylesheets>
+                            <URL value="@resources/temperaturetab.css" />
+                          </stylesheets>-->
+                          <xAxis>
+                            <NumberAxis id="tmpxAxis" autoRanging="false" forceZeroInRange="false" label="" minorTickCount="10" minorTickLength="10.0" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="10.0" upperBound="60.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis autoRanging="false" forceZeroInRange="false" label="" minorTickCount="10" minorTickLength="10.0" minorTickVisible="false" prefHeight="110.0" prefWidth="4.0" side="RIGHT" tickLabelGap="1.0" tickLength="1.0" tickUnit="10.0" />
+                          </yAxis>
+                          <padding>
+                            <Insets left="5.0" right="5.0" fx:id="x2" />
+                          </padding>
+                        </StackedAreaChart>
+                        <StackedAreaChart fx:id="salinityChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" padding="$x2" style=" -fx-background-color:#ffffff;&#10;   -fx-border-width:5 0 5 5;&#10;    -fx-border-color:black;&#10;CHART_COLOR_1:green;&#10;CHART_COLOR_1_TRANS_20:#d8d8d8;" title="" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                          <!--                          <stylesheets>
+                            <URL value="@resources/temperaturetab.css" />
+                          </stylesheets>-->
+                          <xAxis>
+                            <NumberAxis autoRanging="false" label="" minorTickCount="10" minorTickLength="10.0" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickMarkVisible="false" tickUnit="10.0" upperBound="60.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis autoRanging="false" label="" minorTickVisible="false" prefHeight="74.0" prefWidth="10.0" side="RIGHT" tickLabelGap="1.0" tickLength="1.0" upperBound="38.0" />
+                          </yAxis>
+                        </StackedAreaChart>
+                        <StackedAreaChart fx:id="phChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" style=" -fx-background-color:#ffffff;&#10;-fx-border-width:5 0 5 5;&#10;    -fx-border-color:black;&#10;CHART_COLOR_1:blue;&#10;CHART_COLOR_1_TRANS_20:#d8d8d8;" styleClass="null" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                          <!--                          <stylesheets>
+                            <URL value="@resources/temperaturetab.css" />
+                          </stylesheets>-->
+                          <xAxis>
+                            <NumberAxis autoRanging="false" label="" minorTickCount="10" minorTickLength="10.0" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="10.0" upperBound="60.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis autoRanging="false" label="" prefHeight="86.0" prefWidth="10.0" side="RIGHT" tickLabelGap="1.0" tickLength="1.0" upperBound="14.0" />
+                          </yAxis>
+                        </StackedAreaChart>
+                        <StackedAreaChart fx:id="nitrateChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" style=" -fx-background-color:#ffffff;&#10;  -fx-border-width:5 0 5 5;&#10;    -fx-border-color:black;&#10;CHART_COLOR_1:black;&#10;CHART_COLOR_1_TRANS_20:#d8d8d8;" styleClass="null" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                          <!--                          <stylesheets>
+                            <URL value="@resources/temperaturetab.css" />
+                          </stylesheets>-->
+                          <xAxis>
+                            <NumberAxis autoRanging="false" label="" minorTickCount="10" minorTickLength="10.0" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="10.0" upperBound="60.0" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis autoRanging="false" label="" minorTickVisible="false" side="RIGHT" tickLabelGap="1.0" tickLength="1.0" tickMarkVisible="false" upperBound="18.0" />
+                          </yAxis>
+                        </StackedAreaChart>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                          <children>
+                            <AnchorPane prefHeight="200.0" prefWidth="100.0" styleClass="rightPane">
+                              <children>
+                                <Label font="$x1" layoutX="7.0" layoutY="22.0" prefHeight="22.0" prefWidth="79.0" text="TEMP" textAlignment="CENTER" textFill="RED" />
+                                <Label fx:id="graphTempLbl" layoutY="44.0" prefHeight="44.0" prefWidth="76.0" text="45.6" textAlignment="CENTER" textFill="RED">
+                                  <font>
+                                    <Font name="System Bold" size="24.0" fx:id="x4" />
+                                  </font>
+                                </Label>
+                              </children>
+                              <stylesheets>
+                                <URL value="@resources/temperaturetab.css" />
+                              </stylesheets>
+                            </AnchorPane>
+                            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                          </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <children>
+                            <AnchorPane prefHeight="200.0" prefWidth="100.0" styleClass="rightPane">
+                              <children>
+                                <Label font="$x1" layoutX="7.0" layoutY="22.0" prefHeight="22.0" prefWidth="79.0" text="Salinity" textAlignment="CENTER">
+                                  <textFill>
+                                    <Color blue="0.000" green="1.000" red="0.322" fx:id="x5" />
+                                  </textFill>
+                                </Label>
+                                <Label fx:id="graphSalinityLbl" font="$x4" layoutY="44.0" prefHeight="44.0" prefWidth="76.0" text="76.6" textAlignment="CENTER" textFill="$x5" />
+                              </children>
+                              <stylesheets>
+                                <URL value="@resources/temperaturetab.css" />
+                              </stylesheets>
+                            </AnchorPane>
+                            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                          </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                          <children>
+                            <AnchorPane prefHeight="200.0" prefWidth="100.0" styleClass="rightPane">
+                              <children>
+                                <Label font="$x1" layoutX="7.0" layoutY="22.0" prefHeight="22.0" prefWidth="79.0" text="PH" textAlignment="CENTER">
+                                  <textFill>
+                                    <Color blue="1.000" green="0.200" red="0.263" fx:id="x6" />
+                                  </textFill>
+                                </Label>
+                                <Label fx:id="graphPhLbl" font="$x4" layoutY="44.0" prefHeight="44.0" prefWidth="76.0" text="45.9" textAlignment="CENTER" textFill="$x6" />
+                              </children>
+                              <stylesheets>
+                                <URL value="@resources/temperaturetab.css" />
+                              </stylesheets>
+                            </AnchorPane>
+                            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                          </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                          <children>
+                            <AnchorPane maxWidth="200.0" prefHeight="200.0" prefWidth="100.0" styleClass="rightPane">
+                              <children>
+                                <Label font="$x1" layoutX="7.0" layoutY="22.0" prefHeight="22.0" prefWidth="79.0" text="Nitrate" textAlignment="CENTER" />
+                                <Label id="nitratePhLbl" fx:id="graphNitrateLbl" font="$x4" layoutY="44.0" prefHeight="44.0" prefWidth="76.0" text="65.8" textAlignment="CENTER" />
+                              </children>
+                              <stylesheets>
+                                <URL value="@resources/temperaturetab.css" />
+                              </stylesheets>
+                            </AnchorPane>
+                            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                          </children>
+                        </HBox>
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="600.0" minWidth="10.0" prefWidth="213.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.0" minWidth="10.0" prefWidth="247.0" />
+                      </columnConstraints>
+                      <padding>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                      </padding>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Relay">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <BorderPane maxHeight="50.0" prefHeight="50.0" prefWidth="200.0">
+                          <center>
+                            <Text stroke="BLACK" text="Relay" />
+                          </center>
+                        </BorderPane>
+                        <TableView fx:id="relayTable" prefHeight="375.0" prefWidth="454.0" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Relay" fx:id="relay" />
+                            <TableColumn prefWidth="75.0" text="OnTime" fx:id="onTime" />
+                            <TableColumn prefWidth="75.0" text="Off Time" fx:id="offTime" />
+                            <TableColumn prefWidth="75.0" text="Repeat Time" fx:id="repeatTime" />
+                            <TableColumn prefWidth="75.0" text="Repeat Interval" fx:id="repeatInterval" />
+                          </columns>
+                        </TableView>
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Censor">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <children>
+                        <HBox maxHeight="50.0" prefHeight="50.0" prefWidth="200.0">
+                          <children>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <center>
+                                <Text stroke="BLACK" text="Censor" />
+                              </center>
+                            </BorderPane>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <center>
+                                <Text stroke="BLACK" text="Censor Status" />
+                              </center>
+                            </BorderPane>
+                          </children>
+                        </HBox>
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="454.0" VBox.vgrow="ALWAYS">
+                          <children>
+                            <TableView fx:id="censorTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                              <columns>
+                                <TableColumn prefWidth="75.0" text="censor" fx:id="censor" />
+                                <TableColumn prefWidth="75.0" text="actual" fx:id="actual" />
+                                <TableColumn prefWidth="75.0" text="multiplier" fx:id="multiplier" />
+                                <TableColumn prefWidth="75.0" text="correction" fx:id="correction" />
+                                <TableColumn prefWidth="75.0" text="Final Reading" fx:id="finalReading" />
+                              </columns>
+                            </TableView>
+                            <TableView fx:id="censorTable2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="375.0" prefWidth="253.0" HBox.hgrow="ALWAYS">
+                              <columns>
+                                <TableColumn prefWidth="75.0" text="digital" fx:id="digital" />
+                                <TableColumn prefWidth="75.0" text="Status" fx:id="status" />
+                                <TableColumn prefWidth="75.0" text="Enable" fx:id="enable" />
+                              </columns>
+                            </TableView>
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+          </tabs>
+        </TabPane>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>
