@@ -10,14 +10,16 @@ package testapp;
  * @author fazeem
  */
 import com.sun.javafx.scene.control.skin.TableViewSkin;
-import javafx.scene.control.Skin;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class GUIUtils {
+
     private static Method columnToFitMethod;
 
     static {
@@ -43,5 +45,14 @@ public class GUIUtils {
                 }
             }
         });
+    }
+
+    public static void showErrorMSG(String header,String text) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText("Look, an Error Dialog");
+        alert.setContentText("Ooops, there was an error!");
+
+        alert.show();
     }
 }

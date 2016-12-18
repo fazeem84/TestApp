@@ -115,9 +115,9 @@
                         <!--                        <TextField prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />-->
                         <!--                        <TextField prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />-->
                         <Spinner fx:id="tempSpinner" disable="true" max="100" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                        <Spinner fx:id="salinitySpinner" disable="true" max="380" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Spinner fx:id="phSpinner" disable="true" max="140" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Spinner fx:id="nitrateSpinner" disable="true" max="180" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Spinner fx:id="salinitySpinner" disable="true" max="38" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Spinner fx:id="phSpinner" disable="true" max="14" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Spinner fx:id="nitrateSpinner" disable="true" max="18" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                       </children>
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -134,7 +134,7 @@
                         <URL value="@resources/button.css" />
                       </stylesheets>
                     </Button>
-                    <GridPane layoutX="175.0" layoutY="74.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="460.0" style="-fx-grid-lines-visible:true;">
+                    <GridPane layoutX="175.0" layoutY="74.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="485.0" style="-fx-grid-lines-visible:true;">
                       <children>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
                           <center>

@@ -115,9 +115,9 @@
                         <!--                        <TextField prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />-->
                         <!--                        <TextField prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />-->
                         <Spinner fx:id="tempSpinner" disable="true" max="100" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                        <Spinner fx:id="salinitySpinner" disable="true" max="380" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Spinner fx:id="phSpinner" disable="true" max="140" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Spinner fx:id="nitrateSpinner" disable="true" max="180" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Spinner fx:id="salinitySpinner" disable="true" max="38" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Spinner fx:id="phSpinner" disable="true" max="14" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Spinner fx:id="nitrateSpinner" disable="true" max="18" min="1" initialValue="1" amountToStepBy="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                       </children>
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -208,20 +208,24 @@
                   <children>
                     <GridPane maxWidth="1.7976931348623157E308" style="-fx-border-color:red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                       <children>
-                        <StackedAreaChart fx:id="tmpChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" maxWidth="1.7976931348623157E308" style="-fx-background-color:#ffffff&#9;;&#10;-fx-border-width:5 0 5 5;&#10; -fx-border-color:black;&#10;CHART_COLOR_1:red;&#10;CHART_COLOR_1_TRANS_20:#d8d8d8;" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                          <!--                          <stylesheets>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                          <children>
+                            <StackedAreaChart fx:id="tmpChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" maxWidth="1.7976931348623157E308" style="-fx-background-color:#ffffff&#9;;&#10;-fx-border-width:5 0 5 5;&#10; -fx-border-color:black;&#10;CHART_COLOR_1:red;&#10;CHART_COLOR_1_TRANS_20:#d8d8d8;" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                              <!--                          <stylesheets>
                             <URL value="@resources/temperaturetab.css" />
                           </stylesheets>-->
-                          <xAxis>
-                            <NumberAxis id="tmpxAxis" autoRanging="false" forceZeroInRange="false" label="" minorTickCount="10" minorTickLength="10.0" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="10.0" upperBound="60.0" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis autoRanging="false" forceZeroInRange="false" label="" minorTickCount="10" minorTickLength="10.0" minorTickVisible="false" prefHeight="110.0" prefWidth="4.0" side="RIGHT" tickLabelGap="1.0" tickLength="1.0" tickUnit="10.0" />
-                          </yAxis>
-                          <padding>
-                            <Insets left="5.0" right="5.0" fx:id="x2" />
-                          </padding>
-                        </StackedAreaChart>
+                              <xAxis>
+                                <NumberAxis id="tmpxAxis" autoRanging="false" forceZeroInRange="false" label="" minorTickCount="10" minorTickLength="10.0" side="BOTTOM" tickLabelGap="1.0" tickLength="1.0" tickUnit="10.0" upperBound="60.0" />
+                              </xAxis>
+                              <yAxis>
+                                <NumberAxis autoRanging="false" forceZeroInRange="false" label="" minorTickCount="10" minorTickLength="10.0" minorTickVisible="false" prefHeight="110.0" prefWidth="4.0" side="RIGHT" tickLabelGap="1.0" tickLength="1.0" tickUnit="10.0" />
+                              </yAxis>
+                              <padding>
+                                <Insets left="5.0" right="5.0" fx:id="x2" />
+                              </padding>
+                            </StackedAreaChart>
+                          </children>
+                        </StackPane>
                         <StackedAreaChart fx:id="salinityChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" padding="$x2" style=" -fx-background-color:#ffffff;&#10;   -fx-border-width:5 0 5 5;&#10;    -fx-border-color:black;&#10;CHART_COLOR_1:green;&#10;CHART_COLOR_1_TRANS_20:#d8d8d8;" title="" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="0" GridPane.rowIndex="1">
                           <!--                          <stylesheets>
                             <URL value="@resources/temperaturetab.css" />

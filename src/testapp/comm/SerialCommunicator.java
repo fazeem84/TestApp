@@ -18,6 +18,7 @@ import gnu.io.SerialPortEventListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import testapp.hibernate.dao.DAO;
 import testapp.hibernate.pojo.DeviceInput;
+import testapp.hibernate.pojo.DeviceSettings;
 
 /**
  * This version of the TwoWaySerialComm example makes use of the
@@ -40,7 +42,7 @@ public class SerialCommunicator {
     List<SerialPort> portList = new ArrayList<>();
     List<String> portNameList = new ArrayList<>();
     Logger log = Logger.getLogger(this.getClass().getName());
-    public static BlockingQueue<JSONObject> reqBlockingQueue = new ArrayBlockingQueue<>(10);
+    public static BlockingQueue<DeviceSettings> reqBlockingQueue = new ArrayBlockingQueue<>(10);
     public static boolean disconnect = false;
 
     public SerialCommunicator() {
@@ -92,7 +94,7 @@ public class SerialCommunicator {
     public void connect(String portName) throws Exception {
         log.info("Conncting Port" + portName);
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
-        if (portIdentifier.isCurrentlyOwned()) {
+        if (portIdentifier.isCurrentlyOwned() ) {
             System.out.println("Error: Port is currently in use");
         } else {
             CommPort commPort = portIdentifier.open("Conn" + portList.size(), 2000);
@@ -144,6 +146,7 @@ public class SerialCommunicator {
                     buffer[len++] = (byte) data;
                 }
                 String response = new String(buffer, 0, len);
+                log.info("-----FromSerial Port-----");
                 log.info(response);
                 try {
                     JSONObject outJSON = new JSONObject(response);
@@ -180,14 +183,47 @@ public class SerialCommunicator {
         public SerialWriter(OutputStream out) {
             this.out = out;
         }
+       public BigInteger toAsci(String str) {
+           // String str = "abc";  // or anything else
+
+            StringBuilder sb = new StringBuilder();
+            for (char c : str.toCharArray()) {
+                sb.append((int) c);
+            }
+
+            BigInteger mInt = new BigInteger(sb.toString());
+           // System.out.println(mInt);
+            return mInt;
+
+        }
+        
 
         @Override
         public void run() {
             try {
                 while (!disconnect) {
-                    String request = reqBlockingQueue.take().toString();
-                    System.out.println("Sending Request "+request);
-                    this.out.write(request.getBytes());
+                    DeviceSettings requestObj = reqBlockingQueue.take();
+                    for(int i=0;i<3;i++){
+                        String request="T";
+                        Integer zeroVal=0;
+                        
+                        Integer tempVal=requestObj.getT1()*10;
+                        Integer niVal=requestObj.getNI()*10;
+                        System.out.println("Temp Value"+tempVal);
+                        System.out.println("NI Value"+niVal);
+                        
+                        System.out.println("Sending Temp array"+toAsci("T").toByteArray());
+                         System.out.println("Value"+tempVal.byteValue());
+                         this.out.write(toAsci("T").toByteArray());
+                         this.out.write(tempVal.byteValue());
+                         System.out.println("Sending Nitrate array"+toAsci("N").toByteArray());
+                         System.out.println("Value"+niVal.byteValue());
+                          this.out.write(toAsci("N").toByteArray());
+                          this.out.write(zeroVal.byteValue());
+                         this.out.write(niVal.byteValue());
+                    }
+                    
+                   
                 }
             } catch (Exception e) {
                 e.printStackTrace();

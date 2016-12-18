@@ -15,11 +15,18 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.StackedAreaChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
@@ -27,6 +34,11 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import org.json.JSONException;
 import org.json.JSONObject;
 import testapp.clock.DigitalClock;
@@ -121,6 +133,10 @@ public class FXMLDocumentController implements Initializable {
     Spinner phSpinner;
     @FXML
     Spinner nitrateSpinner;
+    @FXML
+    StackPane tempGrahPane;
+    
+    
     public SerialCommunicator serialCommunicator = null;
     
 
@@ -147,23 +163,20 @@ public class FXMLDocumentController implements Initializable {
         salinitySpinner.setDisable(true);
         phSpinner.setDisable(true);
         nitrateSpinner.setDisable(true);
-        JSONObject obj=new JSONObject();
         try {
-            obj.put("T1", Integer.parseInt(tempSpinner.getValue().toString()));
-           
-            obj.put("SL", Integer.parseInt(salinitySpinner.getValue().toString()));
-            
-            obj.put("PH", Integer.parseInt(phSpinner.getValue().toString()));
-            
-            obj.put("NI", Integer.parseInt(nitrateSpinner.getValue().toString()));
-            
-             this.deviceSettings.setT1(Integer.parseInt(tempSpinner.getValue().toString()));
-            this.deviceSettings.setSL(Integer.parseInt(salinitySpinner.getValue().toString()));
-            this.deviceSettings.setPH(Integer.parseInt(phSpinner.getValue().toString()));
-            this.deviceSettings.setNI(Integer.parseInt(nitrateSpinner.getValue().toString()));
+            Integer temp= Integer.parseInt(tempSpinner.getValue().toString());
+            Integer salinity= Integer.parseInt(salinitySpinner.getValue().toString());
+            Integer ph= Integer.parseInt(phSpinner.getValue().toString());
+            Integer nitrate= Integer.parseInt(nitrateSpinner.getValue().toString());
+//            GUIUtils.showErrorMSG("Error", "ERR");
+            //return;
+            this.deviceSettings.setT1(temp);
+            this.deviceSettings.setSL(salinity);
+            this.deviceSettings.setPH(ph);
+            this.deviceSettings.setNI(nitrate);
             DAO.updateDeviceSettings(this.deviceSettings);
-            SerialCommunicator.reqBlockingQueue.put(obj);
-        } catch (JSONException | InterruptedException ex) {
+            SerialCommunicator.reqBlockingQueue.put(this.deviceSettings);
+        } catch ( InterruptedException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -195,6 +208,11 @@ public class FXMLDocumentController implements Initializable {
         DeviceSettings deviceSettings=DAO.fetchDeviceSettings();
         this.deviceSettings=deviceSettings;
         if (deviceSettings != null) {
+            tempSpinner.setEditable(true);
+            salinitySpinner.setEditable(true);
+            phSpinner.setEditable(true);
+            nitrateSpinner.setEditable(true);
+            
             tempSpinner.getValueFactory().setValue(deviceSettings.getT1());
             salinitySpinner.getValueFactory().setValue(deviceSettings.getSL());
             phSpinner.getValueFactory().setValue(deviceSettings.getPH());
@@ -219,6 +237,7 @@ public class FXMLDocumentController implements Initializable {
         }, calendar.getTime(), 60 * 1000);
     }
 
+    
     public void drawLastHourGraph() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.HOUR, -1);
@@ -275,6 +294,11 @@ public class FXMLDocumentController implements Initializable {
             salinityChart.getData().add(salinityData);
             phChart.getData().add(phData);
             nitrateChart.getData().add(nitrateData);
+            
+            final Rectangle zoomRect = new Rectangle();
+		zoomRect.setManaged(false);
+		zoomRect.setFill(Color.LIGHTSEAGREEN.deriveColor(0, 1, 1, 0.5));
+		tempGrahPane.getChildren().add(zoomRect);
         }
         /*        ampChart.setStyle("CHART_COLOR_1: blue;" +
         "CHART_COLOR_1_TRANS_20: grey;");
@@ -288,7 +312,48 @@ public class FXMLDocumentController implements Initializable {
         ampChar.setStyle("CHART_COLOR_1: black;" +
         "CHART_COLOR_1_TRANS_20: grey;");*/
     }
-
+ private void setUpZooming(final Rectangle rect, final Node zoomingNode) {
+        final ObjectProperty<Point2D> mouseAnchor = new SimpleObjectProperty<>();
+        zoomingNode.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mouseAnchor.set(new Point2D(event.getX(), event.getY()));
+                rect.setWidth(0);
+                rect.setHeight(0);
+            }
+        });
+        zoomingNode.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                double x = event.getX();
+                double y = event.getY();
+                rect.setX(Math.min(x, mouseAnchor.get().getX()));
+                rect.setY(Math.min(y, mouseAnchor.get().getY()));
+                rect.setWidth(Math.abs(x - mouseAnchor.get().getX()));
+                rect.setHeight(Math.abs(y - mouseAnchor.get().getY()));
+            }
+        });
+    }
+    
+    private void doZoom(Rectangle zoomRect, LineChart<Number, Number> chart) {
+        Point2D zoomTopLeft = new Point2D(zoomRect.getX(), zoomRect.getY());
+        Point2D zoomBottomRight = new Point2D(zoomRect.getX() + zoomRect.getWidth(), zoomRect.getY() + zoomRect.getHeight());
+        final NumberAxis yAxis = (NumberAxis) chart.getYAxis();
+        Point2D yAxisInScene = yAxis.localToScene(0, 0);
+        final NumberAxis xAxis = (NumberAxis) chart.getXAxis();
+        Point2D xAxisInScene = xAxis.localToScene(0, 0);
+        double xOffset = zoomTopLeft.getX() - yAxisInScene.getX() ;
+        double yOffset = zoomBottomRight.getY() - xAxisInScene.getY();
+        double xAxisScale = xAxis.getScale();
+        double yAxisScale = yAxis.getScale();
+        xAxis.setLowerBound(xAxis.getLowerBound() + xOffset / xAxisScale);
+        xAxis.setUpperBound(xAxis.getLowerBound() + zoomRect.getWidth() / xAxisScale);
+        yAxis.setLowerBound(yAxis.getLowerBound() + yOffset / yAxisScale);
+        yAxis.setUpperBound(yAxis.getLowerBound() - zoomRect.getHeight() / yAxisScale);
+        System.out.println(yAxis.getLowerBound() + " " + yAxis.getUpperBound());
+        zoomRect.setWidth(0);
+        zoomRect.setHeight(0);
+    }
     private void createCensorTable() {
         GUIUtils.autoFitTable(censorTable);
         censorTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
